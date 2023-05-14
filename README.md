@@ -54,13 +54,18 @@ The analysis involved training two inpainting models on V100 and A100 with profi
 #### PDGAN - A100
 ![Alt text](rooflinea100_PDGAN.jpg))
 
-![Alt text](arch.png)
+#### Progressive GAN - V100
+![Alt text](rooflineV100-ProgGAN.jpg)
 
-![Alt text](arch.png)
+#### Progressive GAN - a100
+![Alt text](rooflinea100-ProgGAN.jpg)
 
 
-## Documentation
-- Project report can be found at [docs/Report.pdf](https://github.com/shreya1313/Deep-Learning-Mini-Project/blob/main/docs/Report.pdf)
+## Observations
+- Profiling results: Bottleneck for both our inpainting models is a result of their convolutional layers backward pass.
+- Reason: High number of gradient calculations during backpropagation.
+- To improve the performance of of our backward pass we make use of mixed precision training.
+
 
 ## Authors
 - Saaketh Koundinya : sg7729@nyu.edu
