@@ -1,18 +1,9 @@
 # Optimization-of-Image-inpainting-GANs
-Optimization of image in-painting techniques by reduced precision training.
-
-# Deep-Learning-Mini-Project
-
-
-## Goal
-
-##### Optimize image inpainting techniques: PD-GANs and Progressive-Generative-Networks by analysing models and identifying bottlenecks across different GPUs (Nvidia V100, Nvidia A100).
+## Goal: To enhance the efficiency and speed of GANs for inpainting tasks, while also reducing the data requirements and addressing their inherent instability.
 
 ## Our Proposed Solution
 
-### Using mixed precision training to improve per iteration training time while also improving overall energy efficiency 
-
-![Alt text](arch.png)
+The analysis involved training two inpainting models on V100 and A100 with profiling during training using PyTorch profiler to evaluate metrics such as GPU power consumption, utilization, temperature, time per iteration, loss, PSNR, and SSIM. The results were compared across different hardware accelerators and inpainting techniques. To optimize bottlenecks, mixed precision training was used, which enables lower precision data types to speed up computations of the backward pass. Roofline models were built to validate the optimization. The goal of the analysis was to improve energy efficiency and performance while using GANs for inpainting.
 
 ## Repository Structure - below are the major contributions along with granular changes in various files of PD-GAN.
 
@@ -43,10 +34,28 @@ Optimization of image in-painting techniques by reduced precision training.
 
 ## Results
 
-| Model Architecture  | Optimization |
-| ------------- | |
-| PD-GAN |  |
-| Progressive GANs  |  |
+| Model Architecture  | Bottleneck | Optimization |
+| ------------- | ------------- | ------------- |
+| PD-GAN | Gradient Calculation | Mixed Precision Training  |
+| Progressive GANs  | Gradient Calculation | Mixed Precision Training |
+
+| Model |	GPU |	%Bandwidth Increase	| %Performance increase	| Speedup	| %Power decrease |
+| ------------- | ------------ |------------- | ------------- | ------------- | ------------- |
+| Progressive-GAN | 	A100	| 484.56	| 484.56	| 3.67	| -5.71 | 
+| Progressive-GAN | 	V100 | 	50.36 | 	50.36	|  1.37	 |  -51.21 | 
+|  PD-GAN	 | A100	 |  134.59 | 	155.43 | 	1.33	|  -14.95 | 
+| PD-GAN | 	V100 | 	94.58 | 	106.03 | 	2.24 | 	-33.98 | 
+
+## Roofline
+
+![Alt text](arch.png)
+
+![Alt text](arch.png)
+
+![Alt text](arch.png)
+
+![Alt text](arch.png)
+
 
 ## Documentation
 - Project report can be found at [docs/Report.pdf](https://github.com/shreya1313/Deep-Learning-Mini-Project/blob/main/docs/Report.pdf)
