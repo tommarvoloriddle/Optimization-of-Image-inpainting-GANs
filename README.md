@@ -48,9 +48,11 @@ The analysis involved training two inpainting models on V100 and A100 with profi
 
 ## Roofline
 
-![Alt text](arch.png)
+#### PDGAN - V100
+![Alt text](rooflineV100_PDGAN.jpeg)
 
-![Alt text](arch.png)
+#### PDGAN - A100
+![Alt text](rooflinea100_PDGAN.jpg))
 
 ![Alt text](arch.png)
 
